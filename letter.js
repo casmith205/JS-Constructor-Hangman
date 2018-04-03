@@ -10,10 +10,8 @@ var Letter = function (x) {
     this.displayLetter = function () {
         if (this.guessed) {
             this.shown = this.underlying;
-            console.log (this.shown);
-        } else {
-            console.log (this.shown);
-        }
+        };
+        return this.shown;
     };
     // Function to determine if the guessed letter equals the underlying value
     this.checkLetter = function (guess) {
@@ -26,5 +24,6 @@ var Letter = function (x) {
 
 // Export Letter 
 module.exports = Letter;
+
 
 

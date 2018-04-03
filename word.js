@@ -1,24 +1,26 @@
 var Letter = require("./letter.js");
 
-
-// This should call the function on each letter object 
-// (the first function defined in Letter.js) that displays the character or an 
-// underscore and concatenate those together.
-// A function that takes a character as an argument and calls the guess function 
-// on each letter object (the second function defined in Letter.js)
-
 // Defining the constructor for a word 
 var Word = function (word) {
     // Splits the string into an array of letters
-    this.letterArr = word.split("");
+    this.letterArr = Array.from(word);
+    // Takes the array of letters and interprets what is shown (placeholder or underlying)
     this.lettersShown = [];
-    // Displays string 
+    // Function to take each letter in the letterArr and push determine what to show on the screen.
     this.displayWord = function (){
         for (i = 0; i < this.letterArr.length; i++) {
             var newLetter = new Letter(this.letterArr[i]);
-            this.lettersShown.push(newLetter.shown);
+            this.lettersShown.push(newLetter.displayLetter());
         };
-    console.log(this.lettersShown);
+    };
+    // Takes in the user guess
+    this.checkGuess = function (x) {
+        for (i = 0; i < this.letterArr.length; i++) {
+            var newLetter = new Letter(this.letterArr[i]);
+            newLetter.checkLetter(x);
+            newLetter.displayLetter();
+            this.lettersShown.splice(i, 1, (newLetter.shown));
+        };
     };
 };
 
@@ -26,3 +28,6 @@ var Word = function (word) {
 var currentWord = new Word("dog");
 console.log(currentWord.letterArr);
 currentWord.displayWord();
+
+currentWord.checkGuess("d")
+console.log(currentWord.lettersShown);
