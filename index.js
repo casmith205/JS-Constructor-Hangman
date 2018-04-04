@@ -33,6 +33,7 @@ var game = {
                 // Word = this.currentWord as defined above. Check the guess to see if it matches a letter in the word.
                 word.checkGuess(guess.guessPrompt);
                 console.log(word.lettersShown.toString());
+                console.log("\n---------------------------")
                 now.userInteraction(word);
             });
         } else {
