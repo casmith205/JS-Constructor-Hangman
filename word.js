@@ -8,6 +8,8 @@ var Word = function (word) {
     this.lettersShown = [];
     // Counting how many letters are correct
     this.correctLetters = 0;
+    // Documenting how many guesses are remaining
+    this.remainingGuesses = 10;
     // Function to take each letter in the letterArr and push determine what to show on the screen.
     this.displayWord = function () {
         for (i = 0; i < this.letterArr.length; i++) {
@@ -25,8 +27,10 @@ var Word = function (word) {
             if (newLetter.guessed) {
                 this.lettersShown.splice(i, 1, (newLetter.shown));
                 this.correctLetters++;
-                console.log(this.correctLetters);
-            };
+            } 
+            // else {
+            //     this.remainingGuesses--;
+            // };
         };
     };
 };

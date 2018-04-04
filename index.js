@@ -2,16 +2,14 @@
 var inquirer = require("inquirer");
 var Word = require("./word.js");
 
-console.log("Ready to play Candy Hangman? \nGuess what candy bar I'm craving!");
-console.log("-----------------------------------------");
+
 
 var game = {
     wordBank: ['butterfinger', 'hersheys', 'crunch', 'payday', 'reeses', 'snickers', 'twix', 'toblerone', 'whatchamacallit'],
-    remainingGuesses: 10,
     currentWord: null,
-    wordGuessed: false,
     startGame: function () {
-        // this.resetGuesses();
+        console.log("\n\nReady to play Candy Hangman? \nGuess what candy bar I'm craving!");
+        console.log("----------------------------\n");
         this.currentWord = new Word(this.wordBank[Math.floor(Math.random() * this.wordBank.length)]);
         this.currentWord.displayWord();
         // ******Why does this not get rid of the commas
@@ -23,7 +21,7 @@ var game = {
     userInteraction: function (word) {
         var now = this;
         // if statement to ensure that our questions are only asked five times
-        if (this.remainingGuesses > 0 && !this.wordGuessed) {
+        if (word.remainingGuesses > 0 && word.correctLetters !== word.letterArr.length){
             inquirer.prompt([
                 {
                     name: "guessPrompt",
@@ -39,7 +37,12 @@ var game = {
 
             });
         } else {
-            // if guesses run out or the word is correctly guessed, console.log a message
+            if(word.remainingGuesses === 0){
+                console.log("\nOh no! Looks like you ran out of guesses. \nThe correct answer was "+this.currentWord.letterArr.join("")+"!");
+            } else {
+                console.log("\nCongratulations! You got it! The answer was "+this.currentWord.letterArr.join(""));
+            };
+            this.startGame();
         }
     },
 };
