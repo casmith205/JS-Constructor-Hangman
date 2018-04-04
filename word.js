@@ -12,6 +12,7 @@ var Word = function (word) {
             var newLetter = new Letter(this.letterArr[i]);
             this.lettersShown.push(newLetter.displayLetter());
         };
+        console.log(this.lettersShown);
     };
     // Takes in the user guess
     this.checkGuess = function (x) {
@@ -24,10 +25,4 @@ var Word = function (word) {
     };
 };
 
-// TEST
-var currentWord = new Word("dog");
-console.log(currentWord.letterArr);
-currentWord.displayWord();
-
-currentWord.checkGuess("d")
-console.log(currentWord.lettersShown);
+module.exports = Word;
