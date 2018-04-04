@@ -16,6 +16,7 @@ var game = {
         this.currentWord.displayWord();
         // ******Why does this not get rid of the commas
         console.log(this.currentWord.lettersShown.join(" "))
+        console.log("---------------------------\n")
         // Passing the current word through to the userInteraction functions
         this.userInteraction(this.currentWord);
     },

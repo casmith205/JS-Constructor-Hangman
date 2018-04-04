@@ -10,19 +10,22 @@ var Word = function (word) {
     this.displayWord = function (){
         for (i = 0; i < this.letterArr.length; i++) {
             var newLetter = new Letter(this.letterArr[i]);
-            this.lettersShown.push(newLetter.displayLetter());
+            this.lettersShown.push(newLetter.shown);
         };
-        return this.lettersShown.join("");
     };
     // Takes in the user guess
     this.checkGuess = function (x) {
         for (i = 0; i < this.letterArr.length; i++) {
+            // creating a new letter every time I need to check for a letter which isnt right but cnat figure out what to do*****
             var newLetter = new Letter(this.letterArr[i]);
             newLetter.checkLetter(x);
-            newLetter.displayLetter();
-            this.lettersShown.splice(i, 1, (newLetter.shown));
+            if(newLetter.guessed){
+                this.lettersShown.splice(i, 1, (newLetter.shown));
+            };
         };
     };
 };
 
 module.exports = Word;
+
+

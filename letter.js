@@ -11,7 +11,6 @@ var Letter = function (x) {
         if (this.guessed) {
             this.shown = this.underlying;
         };
-        return this.shown;
     };
     // Function to determine if the guessed letter equals the underlying value
     this.checkLetter = function (guess) {
