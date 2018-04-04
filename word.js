@@ -12,7 +12,7 @@ var Word = function (word) {
             var newLetter = new Letter(this.letterArr[i]);
             this.lettersShown.push(newLetter.displayLetter());
         };
-        return this.lettersShown.toString("");
+        return this.lettersShown.join("");
     };
     // Takes in the user guess
     this.checkGuess = function (x) {

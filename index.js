@@ -15,7 +15,7 @@ var game = {
         this.currentWord = new Word(this.wordBank[Math.floor(Math.random() * this.wordBank.length)]);
         this.currentWord.displayWord();
         // ******Why does this not get rid of the commas
-        console.log(this.currentWord.lettersShown.toString())
+        console.log(this.currentWord.lettersShown.join(" "))
         // Passing the current word through to the userInteraction functions
         this.userInteraction(this.currentWord);
     },
@@ -32,9 +32,10 @@ var game = {
                 console.log("---------------------------\nYou guesssed: " + guess.guessPrompt);
                 // Word = this.currentWord as defined above. Check the guess to see if it matches a letter in the word.
                 word.checkGuess(guess.guessPrompt);
-                console.log(word.lettersShown.toString());
+                console.log(word.lettersShown.join(" "));
                 console.log("\n---------------------------")
                 now.userInteraction(word);
+                // **********SPLICE ISN'T WORKING TO CONTINUALLY REPLACE LETTERS
             });
         } else {
             // if guesses run out or the word is correctly guessed, console.log a message
