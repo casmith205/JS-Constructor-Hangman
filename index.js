@@ -20,6 +20,7 @@ var game = {
         this.userInteraction(this.currentWord);
     },
     userInteraction: function (word) {
+        var now = this;
         // if statement to ensure that our questions are only asked five times
         if (this.remainingGuesses > 0 && !this.wordGuessed) {
             inquirer.prompt([
@@ -32,6 +33,7 @@ var game = {
                 // Word = this.currentWord as defined above. Check the guess to see if it matches a letter in the word.
                 word.checkGuess(guess.guessPrompt);
                 console.log(word.lettersShown.toString());
+                now.userInteraction(word);
             });
         } else {
             // if guesses run out or the word is correctly guessed, console.log a message
