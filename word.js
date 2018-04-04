@@ -6,8 +6,8 @@ var Word = function (word) {
     this.letterArr = Array.from(word);
     // Takes the array of letters and interprets what is shown (placeholder or underlying)
     this.lettersShown = [];
+    // Counting how many letters are correct
     this.correctLetters = 0;
-    this.incorrectLetters = 0;
     // Function to take each letter in the letterArr and push determine what to show on the screen.
     this.displayWord = function () {
         for (i = 0; i < this.letterArr.length; i++) {
@@ -18,27 +18,16 @@ var Word = function (word) {
     // Takes in the user guess
     this.checkGuess = function (x) {
         for (i = 0; i < this.letterArr.length; i++) {
-            // creating a new letter every time I need to check for a letter which isnt right but cnat figure out what to do*****
             var newLetter = new Letter(this.letterArr[i]);
+            // Check each letter to see if the guess matches the underlying values
             newLetter.checkLetter(x);
+            // If it was guessed correctly, splice it into the array and increment correct letters
             if (newLetter.guessed) {
                 this.lettersShown.splice(i, 1, (newLetter.shown));
+                this.correctLetters++;
+                console.log(this.correctLetters);
             };
         };
-    };
-    // Checks if word is guessed
-    this.wordGuessed = function () {
-        for (i = 0; i < this.letterArr.length; i++) {
-            if (this.lettersShown[i] !== "_") {
-                this.correctLetters++;
-
-            } else {
-                this.incorrectLetters++;
-
-            }
-            console.log(this.correctLetters);
-            console.log(this.incorrectLetters);
-        }
     };
 };
 
