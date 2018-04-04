@@ -2,8 +2,6 @@
 var inquirer = require("inquirer");
 var Word = require("./word.js");
 
-
-
 var game = {
     wordBank: ['butterfinger', 'hersheys', 'crunch', 'payday', 'reeses', 'snickers', 'twix', 'toblerone', 'whatchamacallit'],
     currentWord: null,
@@ -30,7 +28,7 @@ var game = {
                     message: "Guess a letter!"
                 }
             ]).then(function (guess) {
-                console.log("---------------------------\nYou guesssed: " + guess.guessPrompt);
+                console.log("\n---------------------------\nYou guesssed: " + guess.guessPrompt);
                 // Word = this.currentWord as defined above. Check the guess to see if it matches a letter in the word.
                 word.checkGuess(guess.guessPrompt);
                 console.log(word.lettersShown.join(" "));

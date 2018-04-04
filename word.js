@@ -42,7 +42,7 @@ var Word = function (word) {
         if (this.incorrectLetters ===this.letterArr.length) {
             this.remainingGuesses --;
         };
-        console.log("\nYou have "+this.remainingGuesses+" guesses remaining!"); 
+        console.log("\nYou have "+this.remainingGuesses+" guesses remaining!\n"); 
     };
 };
 
