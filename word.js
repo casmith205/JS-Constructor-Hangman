@@ -10,6 +10,8 @@ var Word = function (word) {
     this.correctLetters = 0;
     // Documenting how many guesses are remaining
     this.remainingGuesses = 10;
+    // Dummy variable for incorrect letters
+    this.incorrectLetters = 0;
     // Function to take each letter in the letterArr and push determine what to show on the screen.
     this.displayWord = function () {
         for (i = 0; i < this.letterArr.length; i++) {
@@ -19,6 +21,8 @@ var Word = function (word) {
     };
     // Takes in the user guess
     this.checkGuess = function (x) {
+        // Before the letter is being checked, reset the incorrectLetter value
+        this.incorrectLetters=0;
         for (i = 0; i < this.letterArr.length; i++) {
             var newLetter = new Letter(this.letterArr[i]);
             // Check each letter to see if the guess matches the underlying values
@@ -28,10 +32,17 @@ var Word = function (word) {
                 this.lettersShown.splice(i, 1, (newLetter.shown));
                 this.correctLetters++;
             } 
-            // else {
-            //     this.remainingGuesses--;
-            // };
+            else {
+                // Increase the incorrect letter count for each letter that doesn't match the guess
+                this.incorrectLetters++;
+            };
         };
+        // If there were no correct letters (incorrect letters match the length of the array), decrease the remainng guesses
+        // Functions this way because correct letters don't reset--this is easier to track within this function
+        if (this.incorrectLetters ===this.letterArr.length) {
+            this.remainingGuesses --;
+        };
+        console.log("\nYou have "+this.remainingGuesses+" guesses remaining!"); 
     };
 };
 
